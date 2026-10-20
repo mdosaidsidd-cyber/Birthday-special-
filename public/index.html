@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6d243d"><title>A Little Birthday Surprise ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+:root{--cream:#fff8f0;--rose:#f6dce0;--wine:#6d243d;--ink:#40232d;--muted:#8b6871}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:'DM Sans',sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff 0,transparent 30%),linear-gradient(135deg,#fff8f0,#f7e0e4);overflow-x:hidden}
+main{width:min(760px,92%);margin:0 auto;padding:34px 0 60px;position:relative;z-index:1}.top{text-align:center;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wine)}
+.card{background:#fffaf6ee;border:1px solid #fff;box-shadow:0 20px 70px #6d243d16;border-radius:28px;padding:clamp(22px,5vw,48px);margin-top:20px}
+h1,h2{font-family:'Playfair Display',serif;font-weight:600;line-height:1.15}h1{font-size:clamp(2.4rem,8vw,4.6rem);text-align:center;margin:12px 0}h2{font-size:clamp(1.8rem,5vw,2.7rem);margin:0 0 14px}
+p{line-height:1.8;font-size:1rem}.subtitle{text-align:center;color:var(--muted);margin:0 auto 24px;max-width:460px}.heart{font-size:2.5rem;text-align:center;animation:beat 1.7s infinite}
+input{width:100%;padding:16px;border:1px solid #e5c4cc;border-radius:14px;background:#fff;font:inherit;outline:none}input:focus{border-color:var(--wine);box-shadow:0 0 0 3px #6d243d12}
+button{border:0;border-radius:14px;background:var(--wine);color:white;padding:15px 20px;font:600 1rem 'DM Sans',sans-serif;cursor:pointer;transition:transform .2s,opacity .2s}button:hover{transform:translateY(-2px)}
+form{display:grid;gap:12px;max-width:420px;margin:0 auto}.error{text-align:center;color:#a12c4c;min-height:1.5em;font-size:.9rem}.hidden{display:none!important}
+.letter{font-family:'Playfair Display',serif;font-size:1.13rem;line-height:2}.note{background:#fff;border:1px solid #f3dfe2;border-radius:18px;padding:20px;margin:14px 0}.signature{font-family:'Playfair Display',serif;font-style:italic;font-size:1.35rem;color:var(--wine)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:25px}.confetti{position:fixed;top:-30px;pointer-events:none;z-index:0;animation:fall linear forwards}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}@keyframes fall{to{transform:translateY(110vh) rotate(420deg);opacity:0}}
+@media(max-width:480px){main{padding-top:24px}.card{border-radius:22px}.letter{font-size:1.05rem}}
+</style></head>
+<body><main>
+<div class="top">A tiny corner of the world, just for you</div>
+<section class="card" id="gate"><div class="heart">♡</div><h1>Hey, Favourite Person!</h1>
+<p class="subtitle">A little birthday surprise is waiting for you. Take a breath, smile a little, and unlock this tiny piece of love. 💌</p>
+<form id="unlockForm"><input id="password" type="password" placeholder="Enter your special password" autocomplete="off" required aria-label="Password"><button id="unlockBtn" type="submit">Unlock My Surprise ♡</button><div class="error" id="error" aria-live="polite"></div></form></section>
+<section class="card hidden" id="surprise"><div class="heart">💗</div><h1>Happy Birthday</h1><p class="subtitle">To someone who will always mean something special to me.</p>
+<div class="note"><h2>For you, always…</h2><div class="letter">Hey, favourite person,<br><br>On your birthday, I just want you to know that you are genuinely special to me. You have a place in my heart that words can never fully explain.<br><br>I don't know exactly where life will take us or whether our paths will always stay together. But I do know that what I feel for you is real, and I will always wish the very best for you.<br><br>I hope this new year of your life brings you peaceful days, unexpected happiness, big reasons to smile, and people who remind you how precious you are. Please never forget how much light you bring into this world.<br><br>No matter where life takes us, a part of me will always be cheering for you. And today, more than anything, I hope you feel loved, appreciated, and truly special.</div>
+<p class="signature">With lots of warmth, from someone who cares about you ♡</p></div>
+<div class="note"><h2>One little wish ✨</h2><p>May your smile stay bright, your heart feel safe, and your dreams slowly become real. You deserve beautiful things—not just today, but every day.</p></div>
+<p class="subtitle">No matter where life takes us… Happy Birthday, My Favourite Person. ♡</p><div style="text-align:center"><button id="lockBtn" type="button">Close the surprise</button></div></section>
+<footer>Made with care, just for this little moment ♡</footer></main>
+<script>
+/* Change this demo password to your chosen word. This front-end lock is not strong security. */
+const SPECIAL_PASSWORD = "birthday2026";
+const form=document.getElementById("unlockForm"), passwordInput=document.getElementById("password"), error=document.getElementById("error"), gate=document.getElementById("gate"), surprise=document.getElementById("surprise");
+form.addEventListener("submit",function(event){event.preventDefault();error.textContent="";
+if(passwordInput.value.trim()!==SPECIAL_PASSWORD){error.textContent="Not quite… try the special password again. ♡";passwordInput.select();return;}
+gate.classList.add("hidden");surprise.classList.remove("hidden");document.title="Happy Birthday, Favourite Person ♡";makeHearts();window.scrollTo({top:0,behavior:"smooth"});});
+document.getElementById("lockBtn").addEventListener("click",function(){surprise.classList.add("hidden");gate.classList.remove("hidden");passwordInput.value="";error.textContent="";document.title="A Little Birthday Surprise ♡";window.scrollTo({top:0,behavior:"smooth"});});
+function makeHearts(){const symbols=["♡","♥","✦","💗"];for(let i=0;i<18;i++){const el=document.createElement("span");el.className="confetti";el.textContent=symbols[Math.floor(Math.random()*symbols.length)];el.style.left=Math.random()*100+"vw";el.style.animationDuration=(4+Math.random()*4)+"s";el.style.animationDelay=Math.random()*1.8+"s";el.style.fontSize=(14+Math.random()*20)+"px";document.body.appendChild(el);setTimeout(()=>el.remove(),9000);}}
+</script></body></html>
