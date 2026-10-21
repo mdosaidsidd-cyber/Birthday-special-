@@ -1,130 +1,93 @@
-/* Rozy Birthday Surprise — magical effects add-on */
-/* Add this file as public/magic.css and link it from index.html. */
 
-:root {
-  --magic-rose: #d98c9b;
-  --magic-gold: #d9b66f;
-}
+/* Magical Birthday Effects for Rozy */
 
-/* Soft, cinematic glow behind the existing page */
-body {
-  isolation: isolate;
-}
 body::before {
-  content: "";
+  content: "✿  ✧  ♡  ✦  ❀  ♡  ✧";
   position: fixed;
-  inset: -20%;
-  z-index: -1;
+  inset: -20px 0 0;
+  height: 100vh;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 22%, #ffd9e655 0 2px, transparent 4px),
-    radial-gradient(circle at 78% 36%, #fff0c955 0 2px, transparent 4px),
-    radial-gradient(circle at 55% 82%, #ffffff88 0 1px, transparent 4px);
-  background-size: 170px 190px, 230px 210px, 140px 160px;
-  animation: magic-glow 12s ease-in-out infinite alternate;
+  z-index: 2;
+  color: #d77b9a;
+  font-size: 25px;
+  letter-spacing: 22px;
+  line-height: 2.8;
+  overflow: hidden;
+  opacity: 0.28;
+  animation: petalDrift 12s linear infinite;
 }
 
-/* Gentle entrance for the main content */
-.wrap {
-  animation: magic-appear 1.1s cubic-bezier(.2,.7,.2,1) both;
-}
-.panel {
-  animation: panel-arrive 1.15s .12s ease both;
-}
-.seal {
-  animation: seal-float 3.4s ease-in-out infinite;
+.card {
+  animation: cardAppear 0.9s ease both;
 }
 
-/* Letter reveal */
-.letter-head {
-  animation: letter-reveal .9s .18s both;
-}
-.letter-body p {
-  animation: letter-reveal .8s both;
-}
-.letter-body p:nth-child(1) { animation-delay: .25s; }
-.letter-body p:nth-child(2) { animation-delay: .42s; }
-.letter-body p:nth-child(3) { animation-delay: .59s; }
-.letter-body p:nth-child(4) { animation-delay: .76s; }
-.note {
-  animation: note-pop .65s both;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.note:nth-child(1) { animation-delay: .25s; }
-.note:nth-child(2) { animation-delay: .4s; }
-.note:nth-child(3) { animation-delay: .55s; }
-.note:hover {
-  transform: translateY(-5px) rotate(0deg);
-  box-shadow: 0 12px 28px #873f4c1a;
+#surprise .note {
+  animation: letterReveal 1.2s ease both;
 }
 
-/* Falling petals made entirely with CSS */
-body::after {
-  content: "🌸     ✧       🌷       ✦       🌸";
-  position: fixed;
-  top: -60px;
-  left: 0;
-  width: 100%;
-  z-index: 5;
-  pointer-events: none;
-  white-space: pre;
-  word-spacing: 10vw;
-  font-size: clamp(14px, 2vw, 23px);
-  opacity: .68;
-  text-shadow: 0 3px 12px #d98c9b44;
-  animation: petals-fall 14s linear infinite;
+#surprise .note:nth-of-type(2) {
+  animation-delay: 0.25s;
 }
 
-/* Small sparkle around the birthday heading */
-h1 {
-  text-shadow: 0 0 22px #d98c9b20;
-  animation: heading-glow 4s ease-in-out infinite;
+#surprise .note:nth-of-type(3) {
+  animation-delay: 0.5s;
 }
+
+.letter {
+  animation: letterReveal 2s ease both;
+}
+
 .heart {
-  filter: drop-shadow(0 0 7px #d98c9b66);
-}
-.btn {
-  box-shadow: 0 7px 18px #873f4c20;
-}
-.btn:active {
-  transform: scale(.98);
+  filter: drop-shadow(0 0 8px #f4a8c4);
 }
 
-@keyframes magic-glow {
-  from { transform: translate3d(-1%, -1%, 0); opacity: .5; }
-  to { transform: translate3d(1%, 1%, 0); opacity: 1; }
+.confetti {
+  color: #d85b89;
+  text-shadow: 0 0 10px #ffc3db;
 }
-@keyframes magic-appear {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-@keyframes panel-arrive {
-  from { opacity: .6; transform: translateY(12px) scale(.99); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-@keyframes seal-float {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-5px) rotate(-3deg); }
+
+@keyframes petalDrift {
+  from {
+    transform: translateY(-20px) rotate(0deg);
+  }
+  to {
+    transform: translateY(100px) rotate(12deg);
+  }
 }
-@keyframes letter-reveal {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+
+button {
+  box-shadow: 0 6px 20px #6d243d20;
 }
-@keyframes note-pop {
-  from { opacity: 0; transform: translateY(12px) rotate(0); }
-  to { opacity: 1; }
-}
-@keyframes petals-fall {
-  0% { transform: translateY(0) translateX(-1vw) rotate(0deg); }
-  50% { transform: translateY(52vh) translateX(3vw) rotate(18deg); }
-  100% { transform: translateY(110vh) translateX(-2vw) rotate(38deg); }
-}
-@keyframes heading-glow {
-  0%, 100% { filter: drop-shadow(0 0 0 #d98c9b00); }
-  50% { filter: drop-shadow(0 0 9px #d98c9b44); }
+
+button:active {
+  transform: scale(0.97);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before, body::after, .wrap, .panel, .seal, .letter-head,
-  .letter-body p, .note, h1 { animation: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
