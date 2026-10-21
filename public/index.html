@@ -40,4 +40,4 @@ if(passwordInput.value.trim()!==SPECIAL_PASSWORD){error.textContent="Not quite�
 gate.classList.add("hidden");surprise.classList.remove("hidden");document.title="Happy Birthday, Favourite Person ♡";makeHearts();window.scrollTo({top:0,behavior:"smooth"});});
 document.getElementById("lockBtn").addEventListener("click",function(){surprise.classList.add("hidden");gate.classList.remove("hidden");passwordInput.value="";error.textContent="";document.title="A Little Birthday Surprise ♡";window.scrollTo({top:0,behavior:"smooth"});});
 function makeHearts(){const symbols=["♡","♥","✦","💗"];for(let i=0;i<18;i++){const el=document.createElement("span");el.className="confetti";el.textContent=symbols[Math.floor(Math.random()*symbols.length)];el.style.left=Math.random()*100+"vw";el.style.animationDuration=(4+Math.random()*4)+"s";el.style.animationDelay=Math.random()*1.8+"s";el.style.fontSize=(14+Math.random()*20)+"px";document.body.appendChild(el);setTimeout(()=>el.remove(),9000);}}
-</script></body></html>
+</script><script src="/magic.js"></script></body></html>
